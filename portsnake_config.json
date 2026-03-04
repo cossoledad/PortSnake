@@ -1,0 +1,15 @@
+{
+  "mappings": [
+    {
+      "id": "11436cdc721e473db61ef61ff53d4b02",
+      "vm_kind": "WSL2",
+      "vm_name": "Ubuntu",
+      "vm_ip": "172.27.139.53",
+      "vm_port": 8080,
+      "host_ip": "0.0.0.0",
+      "host_port": 8080,
+      "last_active": true,
+      "active": true
+    }
+  ]
+}
