@@ -29,10 +29,18 @@ jobs:
         shell: pwsh
         run: .\build_nuitka.ps1 -PythonExe python
 
+      - name: Show dist tree
+        shell: pwsh
+        run: |
+          if (Test-Path dist) {
+            Get-ChildItem -Recurse dist | Select-Object FullName, Length
+          } else {
+            Write-Error "dist directory does not exist"
+          }
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: PortSnake-windows-standalone
-          path: dist/PortSnake.dist
+          path: dist/*.dist/**
           if-no-files-found: error
-
