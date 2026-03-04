@@ -1,0 +1,38 @@
+name: Build Windows App
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install dependencies
+        shell: pwsh
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flet nuitka ordered-set zstandard
+
+      - name: Build with Nuitka (standalone)
+        shell: pwsh
+        run: .\build_nuitka.ps1 -PythonExe python
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: PortSnake-windows-standalone
+          path: dist/PortSnake.dist
+          if-no-files-found: error
+

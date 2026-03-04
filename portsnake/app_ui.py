@@ -303,10 +303,16 @@ class PortSnakeUI:
         host_port_tf = ft.TextField(label="主机端口", width=120, value=str(item.host_port), disabled=not is_editing)
         vm_port_tf = ft.TextField(label="虚拟机端口", width=120, value=str(item.vm_port), disabled=not is_editing)
 
-        chip = ft.Chip(
-            label=ft.Text("运行中" if item.active else "未运行"),
-            bgcolor="#2A9D8F" if item.active else "#A0AEC0",
-            label_text_style=ft.TextStyle(color=ft.Colors.WHITE),
+        chip = ft.Container(
+            bgcolor="#2A9D8F" if item.active else "#64748B",
+            border_radius=999,
+            padding=ft.padding.symmetric(horizontal=10, vertical=4),
+            content=ft.Text(
+                "运行中" if item.active else "未运行",
+                color=ft.Colors.WHITE,
+                weight=ft.FontWeight.W_600,
+                size=12,
+            ),
         )
         tip = ft.Text(
             "上次关闭前已启用，可重建" if item.last_active and not item.active else "",

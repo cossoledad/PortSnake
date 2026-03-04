@@ -8,8 +8,7 @@
 2. 获取当前 WSL2 发行版 IP。
 3. 尝试获取当前 Hyper-V 虚拟机 IP（通过 PowerShell Direct）。
 4. 创建或覆盖端口映射（`netsh interface portproxy`）。
-5. 可选自动创建防火墙入站规则。
-6. 查看并删除已有端口映射规则。
+5. 查看并删除已有端口映射规则。
 
 ## 环境要求
 
@@ -30,15 +29,11 @@ python app.py
 .\build_nuitka.ps1
 ```
 
-可选（减少 onefile 警告并提升压缩效果）：
+成功后生成目录：
 
-```powershell
-python -m pip install zstandard
-```
+`dist\PortSnake.dist\`
 
-成功后生成：
-
-`dist\PortSnake.exe`
+目录中包含 `PortSnake.exe` 以及所需动态库和运行时文件（非 onefile 自解压模式）。
 
 ## 使用步骤
 
